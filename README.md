@@ -47,16 +47,16 @@ We can use our current timestamp `new Date()` and the original timestamp reflect
 
 Non-optimized code for the aggregation pipeline, probably an [`$addFields` expression](https://www.mongodb.com/docs/v7.0/reference/operator/aggregation/addFields/).
 
-```json
+```bson
 {
-  "adjustedUTC": { $dateFromParts: {
+  adjustedUTC: { $dateFromParts: {
     "year": ISODate().getUTCFullYear(),
     "month": { $add: [ISODate().getUTCMonth(), 1]},
     "day": ISODate().getUTCDate(),
     "hour": { $hour:
       {
-        "date:" "$startDateUTC",
-        "timezone": "$timezone"
+        date: "$startDateUTC",
+        timezone: "$timezone"
       }
     },
     "minute": { $minute: "$startDateUTC"},
