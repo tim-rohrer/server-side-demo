@@ -49,14 +49,14 @@ Non-optimized code for the aggregation pipeline, probably an [`$addFields` expre
 
 ```json
 {
-  adjustedUTC: { $dateFromParts: {
+  "adjustedUTC": { $dateFromParts: {
     "year": ISODate().getUTCFullYear(),
     "month": { $add: [ISODate().getUTCMonth(), 1]},
     "day": ISODate().getUTCDate(),
     "hour": { $hour:
       {
-        date: "$startDateUTC",
-        timezone: "$timezone"
+        "date:" "$startDateUTC",
+        "timezone": "$timezone"
       }
     },
     "minute": { $minute: "$startDateUTC"},
