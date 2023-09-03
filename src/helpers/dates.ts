@@ -38,37 +38,8 @@ export const newWeekday = (previous: number) =>
   Weekdays[prevWeekdays[previous]] as unknown as Weekdays
 
 export const nextOccurrence = (dayOfWeek: Weekdays, dateTime: DateTime) => {
-  // console.log("Meeting time if held today: ", dateTime)
-  // const currentWeekday = dateTime.weekday
-  // console.log("And the desired local day of the week: ", dayOfWeek)
-  // console.log("Day of the month (UTC): ", dateTime.get("day"))
-  // console.log("Day of the month (local)", date)
-  // console.log(currentWeekday)
-  //   "Day of the year Adelaide: ",
-  //   dateTime.setZone("Australia/Adelaide").ordinal
-  // )
-  // console.log(dateTime.getUTCDay(), dateTime.getDay())
-  // // Because dayOfWeek is not in UTC land, we need to adjust it if necessary
-  const adjustedDayOfWeek = dayOfWeek // + dateTime.setZone("UTC").ordinal - dateTime.ordinal
-  // console.log(adjustedDayOfWeek)
+  const adjustedDayOfWeek = dayOfWeek
   const advance = (adjustedDayOfWeek + (7 - dateTime.get("weekday"))) % 7
-  // console.log(advance)
   const newOrdinalDate = dateTime.ordinal + advance
-  // dateTime.setUTCDate(dateTime.getUTCDate() + advance)
-  // console.log(dateTime.set({ordinal: advance}))
   return dateTime.set({ ordinal: newOrdinalDate })
 }
-
-/** Original using Date */
-// export const nextOccurrence = (dayOfWeek: number, dateTime: Date) => {
-//   console.log("Meeting time if held today: ", dateTime)
-//   console.log("Day of the month (UTC): ", dateTime.getUTCDate())
-//   console.log(dateTime.getUTCDay(), dateTime.getDay())
-//   // Because dayOfWeek is not in UTC land, we need to adjust it if necessary
-//   const adjustedDayOfWeek = dayOfWeek + dateTime.getUTCDay() - dateTime.getDay()
-//   const advance = (adjustedDayOfWeek + (7 - dateTime.getUTCDay())) % 7
-//   console.log(advance)
-//   dateTime.setUTCDate(dateTime.getUTCDate() + advance)
-//   console.log(dateTime)
-//   return dateTime
-// }
