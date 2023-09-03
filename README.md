@@ -77,3 +77,9 @@ As long as we've recorded the UTC datetime of the first event in the series, we 
 The entire MongoDB aggregation pipeline used to create the View is in the `demo.spec.ts` file. The first stage of the pipeline is an `$addFields` which calculates `adjustedUTC` and a _corrected_[^1] day of the week for the View. This along with the rest of the data is passed into the second stage (`$project`) where RTC is generated. In the third and final stage, the data is sorted by RTC (although an [index](https://www.mongodb.com/docs/manual/indexes/), if possible with a View, based on RTC might be better).
 
 [^1]: MongoDB uses 1-7 to reflect days of the week vice 0-6. Alternatively, the original set of data could start using 1-7 but this would result in other code changes, or adjustment sometime before providing the data to the client.
+
+## About Weekdays
+
+MongoDB can work with Sunday or Monday as the first day of the week, but in both cases numbering is 1-7. Luxon only implements 1-7 Monday as the start, as is called for in ISO8601.
+
+Initial work started with the use of day 0 as the Sunday, the start of the week. This seems to add unnecessary complexity, and so this demo adopts ISO 8601 standard regarding Monday as the start of the week, with the weekdays numbered 1-7.

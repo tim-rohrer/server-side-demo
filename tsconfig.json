@@ -3,7 +3,8 @@
     "target": "ES2022",
     "module": "ES2020",
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
   "exclude": ["node_modules", "**/*.spec.ts", "./dist/**/*"]
 }

@@ -6,8 +6,11 @@
 import type { JestConfigWithTsJest } from "ts-jest"
 
 const config: JestConfigWithTsJest = {
-  preset: "@shelf/jest-mongodb",
+  globalSetup: "../testEnv/setup.ts",
+  globalTeardown: "../testEnv/teardown.ts",
   extensionsToTreatAsEsm: [".ts"],
+  verbose: true,
+  rootDir: "src",
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },
@@ -20,6 +23,11 @@ const config: JestConfigWithTsJest = {
         useESM: true,
       },
     ],
+  },
+
+  fakeTimers: {
+    enableGlobally: true,
+    doNotFake: ["nextTick", "setImmediate"],
   },
 }
 
